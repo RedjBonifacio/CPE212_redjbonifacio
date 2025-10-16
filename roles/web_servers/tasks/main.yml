@@ -1,0 +1,27 @@
+---
+- name: Install Apache (Ubuntu or CentOS)
+  package:
+    name: "{{ 'apache2' if ansible_distribution == 'Ubuntu' else 'httpd' }}"
+    state: present
+
+- name: Ensure web root exists
+  file:
+    path: /var/www/html
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy default site
+  copy:
+    src: default_site.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Start and enable Apache
+  service:
+    name: "{{ 'apache2' if ansible_distribution == 'Ubuntu' else 'httpd' }}"
+    state: started
+    enabled: true

@@ -1,7 +1,9 @@
 [web_servers]
 192.168.56.102 ansible_hostname=server1 ansible_user=redj1bonifacio
 192.168.56.103 ansible_hostname=server2 ansible_user=redj2bonifacio
+
+[db_servers]
 192.168.56.104 ansible_hostname=centos ansible_user=rdjbnfc
 
 [workstations]
-192.168.56.101 ansible_hostname=workstation ansible_user=redjbonifacio
+localhost ansible_connection=local
